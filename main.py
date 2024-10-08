@@ -8,6 +8,20 @@
 # секунд, потребовалось для вычисления всех простых чисел.
 # Отобразите на экран количество секунд и простые числа.
 
+import time
+
+
+def timer(func):
+	def wrapper():
+		start = time.time()
+		result = func()
+		allTime = time.time() - start
+		print(f'Поиск простых чисел выполнялся {allTime} с.')
+		return result
+	return wrapper
+
+
+@timer
 def prime_numbers():
     n: int = 1
     primeList = []
@@ -23,6 +37,7 @@ def prime_numbers():
 
 
 print(prime_numbers())
+
 
 
 

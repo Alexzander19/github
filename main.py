@@ -12,21 +12,24 @@ import time
 
 
 def timer(func):
-	def wrapper():
-		start = time.time()
-		result = func()
-		allTime = time.time() - start
-		print(f'Поиск простых чисел выполнялся {allTime} с.')
-		return result
-	return wrapper
+    def wrapper(*args):
+        start = time.time()
+        result = func(*args)
+        allTime = time.time() - start
+        print(f'Поиск простых чисел  выполнялся {allTime} с.')
+        print(f'Простые числа в диапазоне от {args[0]} до {args[1]}: ')
+        print(f'Всего {len(result)} чисел')
+        return result
+    
+    return wrapper
 
 
 @timer
-def prime_numbers():
-    n: int = 1
+def prime_numbers(n_start: int, n_stop: int):
+    n: int = n_start
     primeList = []
     
-    while n <= 1000:
+    while n <= n_stop:
         for i in range(2,n):
             if n % i == 0:
                 break
@@ -36,25 +39,18 @@ def prime_numbers():
     return primeList
 
 
-print(prime_numbers())
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(prime_numbers(100, 10000))
 
 
 # Задание 2
 # Добавьте к первому заданию возможность передавать
 # границы диапазона для поиска всех простых чисел.
+
+
+
+
+
+
 # Задание 3
 # Каждый год ваша компания предоставляет различным
 # государственным организациям финансовую отчетность.
